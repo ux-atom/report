@@ -15,17 +15,15 @@
     </header>
 
     <div class="space-y-4">
-      <NuxtLink 
-        v-for="report in reports" 
-        :key="report.id" 
+      <NuxtLink
+        v-for="report in reports"
+        :key="report.id"
         :to="`/report/${report.id}`"
         class="block group p-4 sm:p-6 rounded-xl border border-border bg-surface hover:border-muted transition-colors"
       >
         <div class="flex flex-col sm:flex-row gap-6">
           <div class="flex-1 space-y-3">
             <div class="flex flex-wrap items-center gap-3">
-              <span class="text-xs font-mono font-medium text-muted">Vol. {{ report.id }}</span>
-              <span class="text-xs text-muted">&middot;</span>
               <time class="text-xs font-mono text-muted">{{ report.date }}</time>
               <div class="flex gap-2 ml-auto sm:ml-4">
                 <TagPill v-for="tag in report.tags.slice(0, 2)" :key="tag">{{ tag }}</TagPill>
@@ -35,7 +33,7 @@
               {{ report.insight }}
             </h2>
           </div>
-          
+
           <div class="w-full sm:w-48 grid grid-cols-1 gap-1.5 shrink-0">
             <RatingBar label="Visual" :value="report.ratings.visual" />
             <RatingBar label="UX" :value="report.ratings.ux" />
@@ -45,6 +43,9 @@
           </div>
         </div>
       </NuxtLink>
+
+      <!-- New daily entries get appended above this line, newest first -->
+      <p class="text-center text-sm text-muted font-mono pt-8">প্রথম entry — আরো report প্রতিদিন যোগ হবে এখানে।</p>
     </div>
   </div>
 </template>
@@ -52,35 +53,14 @@
 <script setup>
 import { Search as IconSearch } from 'lucide-vue-next';
 
-// Placeholder data
+// Real entries only — append new days to the top of this array as they're published.
 const reports = [
   {
-    id: '142',
+    id: '2026-09-09',
     date: 'Sep 09, 2026',
-    insight: 'Progressive disclosure is the only way to save AI chat interfaces from cognitive overload.',
-    tags: ['AI UI', 'Layout'],
-    ratings: { visual: 8, ux: 9, motion: 6, a11y: 8, innovation: 9 }
-  },
-  {
-    id: '141',
-    date: 'Sep 08, 2026',
-    insight: 'Micro-animations on state changes reduce perceived latency by up to 300ms.',
-    tags: ['Motion', 'Psychology'],
-    ratings: { visual: 9, ux: 8, motion: 10, a11y: 7, innovation: 7 }
-  },
-  {
-    id: '140',
-    date: 'Sep 07, 2026',
-    insight: 'High-contrast monochrome themes are outperforming low-contrast pastels in B2B SaaS.',
-    tags: ['Color', 'B2B'],
-    ratings: { visual: 10, ux: 8, motion: 5, a11y: 10, innovation: 6 }
-  },
-  {
-    id: '139',
-    date: 'Sep 06, 2026',
-    insight: 'Keyboard navigation must be treated as a primary interaction model, not a compliance checkbox.',
-    tags: ['Accessibility', 'Engineering'],
-    ratings: { visual: 5, ux: 10, motion: 4, a11y: 10, innovation: 5 }
+    insight: 'UI craft ধীরে ধীরে commodify হচ্ছে — real leverage এখন AI workflow-এর trust layer-এ।',
+    tags: ['Bento Grid', 'Peak-End Rule'],
+    ratings: { visual: 7.7, ux: 7.3, motion: 6.7, a11y: 5.9, innovation: 6.9 }
   }
 ];
 </script>

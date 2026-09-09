@@ -11,7 +11,19 @@
 
   body {
     @apply antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "liga" 1, "clig" 1;
+    /* Bangla-safe base line-height — content mixes বাংলা and English inline, so this
+       is set globally rather than per-language; Latin-only areas just get a bit more
+       breathing room, which is harmless. Tighter spots (nav, code, badges) override
+       locally with leading-tight/leading-none where already set. */
+    line-height: 1.75;
+  }
+
+  /* Bengali fonts fake-slant for italic and it renders broken — use weight or the
+     accent color for emphasis instead, never font-style: italic. */
+  em, i {
+    font-style: normal;
+    @apply font-semibold text-accent;
   }
 
   /* Custom scrollbar */

@@ -11,8 +11,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+        // 'Hind Siliguri' as fallback: Inter/Plus Jakarta Sans have no Bangla glyphs,
+        // so the browser auto-falls-back to it per-glyph — Bangla and English can sit
+        // in the same sentence without a font mismatch or manual lang-switching.
+        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Hind Siliguri', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
@@ -28,6 +31,9 @@ export default {
       letterSpacing: {
         tighter: '-0.04em',
         tight: '-0.02em',
+      },
+      lineHeight: {
+        bn: '1.8', // Bangla conjuncts/matras need more vertical room than Latin-only 1.5
       }
     },
   },
